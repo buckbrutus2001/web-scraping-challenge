@@ -141,15 +141,16 @@ def scrape():
 
         hem_name = hem.find('h3').text
         hem_name = hem_name.split(' Enhanced')
+        hem_name = hem_name[0]
 
         hem_url = hem.a['href']
         browser.visit('https://astrogeology.usgs.gov' + hem_url)
         
         hem_img_html = browser.html
         hem_img_soup = BeautifulSoup(hem_img_html,'html.parser')
-        hem_img_url = hem_img_soup.find_all('li')
-        hem_img_url = hem_img_url[1].a['href']
+        hem_img_url = hem_img_soup.find('a', text='Sample').get('href')
         
+            
         hem_dict ={'title': hem_name, 'img_url': hem_img_url}
         hems_dict.append(hem_dict)
         browser.back()

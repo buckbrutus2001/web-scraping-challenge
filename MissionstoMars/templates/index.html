@@ -22,13 +22,54 @@
         </div>
     </div>    
 
+    <br><br>
+
     <div>
         <h3 class="display-6">Lastest Mars News</h3>
-        <h4>{{ mars_data.news_title }}</h4>
-        <p>{{ mars_data.news_description }}</p>
+        <h6>{{mars.news_title}}</h4>
+        <p>{{mars.news_description}}</p>
     </div>
 
+    <div>
+        <h3 class="display-6">Featured Mars Image</h3>
+        <img src="{{ mars.featured_image_url }}" alt="">
+    </div>
 
+    <br><br>
+
+    <div>
+        <h3>Current Weather on Mars</h3>
+        <p>{{ mars.mars_weather }}</p>
+    </div>
+
+    <br><br>
+
+    <div>
+        <h3>Mars Facts</h3>
+        {{ mars.mars_facts_df }}
+    </div>
+
+    <br><br>
+
+    <div>
+            
+        <div class="col-md-12">
+            <div class="row">
+                {% for hemisphere in mars.hemisphere_image_urls %}
+                <div class="col-md-6">
+                    <div class="card">
+                        <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
+                        <img class="card-img-top" src="{{ hemisphere.img_url }}" alt="..."/>
+                        <div class="card-body">
+                            <p class="card-text">{{ hemisphere.title }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    
+    </div>
 
 </body>
 </html>
